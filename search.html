@@ -10,23 +10,34 @@
 <body>
   <div id="app">
     <input type="text" v-model="keyword">
-    <p v-for="text in texts" :key="text">{{text}}</p>
+    <p v-for="text in texts">{{text.name}}</p>
+    <p v-for="text in filteredKeywords" >{{text.name}}</p>
   </div>
   <script>
     const vm = new Vue({
       el:'#app',
       data: {
         keyword:'',
-        texts:['佐藤','山田','鈴木','田中'
-        ]},
+        texts:[
+          {name:'山田'},
+          {name:'鈴木'},
+          {name:'佐藤'},
+          {name:'田中'}
+        ]
+      },
       computed: {
         filteredKeywords: function(){
-          if(texts.indexOf(keyword) != -1){
-            
+          var texts = [];
+          for(var i in this.texts){
+            var text = this.texts[i];
+            if (texts.name.indexOf(this.keyword) !== -1) {
+              texts.push(text);
+            }
           }
+          return texts;
         }
       }
-    })
+    });
   </script>
 </body>
 </html>
