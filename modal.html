@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<style>
+  body,
+  html {
+    height: 100%;
+  }
+  .app {
+    height: 100%;
+  }
+  .window {
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    padding: 15% 40%;
+  }
+  .modal-window {
+    width: 300px;
+    background-color: white;
+  }
+</style>
+<body>
+  <div class="app" id="app">
+    <button v-on:click="openWindow">開く</button>
+    <div class="window" v-on:click="closeWindow" :style="modalStyle">
+      <div class="modal-window" v-on:click="openWindow">
+        <p v-on:click="openWindow">モーダルウィンドウ</p>
+        <button v-on:click="closeWindow">閉じる</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        modalStyle: {
+          'display':'none'
+        }
+      },
+      methods: {
+        openWindow: function(){
+          this.modalStyle = {'display':'block'};
+        },
+        closeWindow: function() {
+          this.modalStyle = {'display':'none'};
+        }
+      }
+    })
+  </script>
+</body>
+</html>
