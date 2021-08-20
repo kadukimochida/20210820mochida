@@ -18,20 +18,33 @@
   .window {
     height: 100%;
     background-color: rgba(0,0,0,0.5);
-    padding: 15% 40%;
+    padding: 15% 40% 0 40%;
+    position: fixed;
+    left: 0%;
+    top: 0%;
   }
   .modal-window {
     width: 300px;
     background-color: white;
   }
+  p {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 0;
+    padding-top: 10px;
+  }
+  .close-btn {
+    display: inline-block;
+    margin: 0 40% 10px 40%;
+  }
 </style>
 <body>
   <div class="app" id="app">
     <button v-on:click="openWindow">開く</button>
-    <div class="window" v-on:click="closeWindow" :style="modalStyle">
-      <div class="modal-window" v-on:click="openWindow">
+    <div class="window" v-on:click.self="closeWindow" :style="modalStyle">
+      <div class="modal-window" v-on:click.self="openWindow">
         <p v-on:click="openWindow">モーダルウィンドウ</p>
-        <button v-on:click="closeWindow">閉じる</button>
+        <button class="close-btn"v-on:click="closeWindow">閉じる</button>
       </div>
     </div>
   </div>
