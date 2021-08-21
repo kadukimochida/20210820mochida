@@ -9,9 +9,8 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" v-model="keyword">
-    <p v-for="text in texts">{{text.name}}</p>
-    <p v-for="text in filteredKeywords" >{{text.name}}</p>
+    <input type="text" v-model="keyword"><!--ユーザーが入力した値をdataのkeywordに代入-->
+    <p v-for="text in filteredKeywords" >{{text.name}}</p> <!--filterdKeywordsで返されたtextsの配列をv-forで表示-->
   </div>
   <script>
     const vm = new Vue({
@@ -27,11 +26,11 @@
       },
       computed: {
         filteredKeywords: function(){
-          var texts = [];
-          for(var i in this.texts){
-            var text = this.texts[i];
-            if (texts.name.indexOf(this.keyword) !== -1) {
-              texts.push(text);
+          var texts = [];　/*変数textsを定義*/
+          for(var i in this.texts){　/**/
+            var text = this.texts[i];/**/
+            if (text.name.indexOf(this.keyword) !== -1) {/*もしtextのnameにkeywordの値があったら*/
+              texts.push(text); /*変数textsにtextを追加*/
             }
           }
           return texts;
